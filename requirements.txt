@@ -1,0 +1,26 @@
+# Core dependencies
+requests>=2.31.0
+python-dotenv>=1.0.0
+web3>=6.11.0
+eth-account>=0.10.0
+
+# Data processing
+pandas>=2.1.0
+numpy>=1.24.0
+
+# News API
+newsapi-python>=0.2.7
+
+# Async support
+aiohttp>=3.9.0
+asyncio>=3.4.3
+
+# Logging
+colorlog>=6.8.0
+
+# Testing (optional)
+pytest>=7.4.0
+pytest-asyncio>=0.21.0
+
+# Type hints
+typing-extensions>=4.8.0
