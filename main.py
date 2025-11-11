@@ -11,6 +11,7 @@ from services.risk_manager import RiskManager
 from strategies.simple_threshold import SimpleThresholdStrategy
 from strategies.llm_simple_threshold import LLMSimpleThresholdStrategy
 from strategies.expiring_markets import ExpiringMarketsStrategy
+from strategies.llm_expiring_markets import LLMExpiringMarketsStrategy
 from strategies.interactive import InteractiveStrategy
 from strategies.index import IndexStrategy
 
@@ -61,6 +62,17 @@ class PolymarketAgent:
         if strategy_name == "expiring" or strategy_name == "all":
             self.strategies.append(ExpiringMarketsStrategy())
             logger.info("✓ 到期市场策略已加载")
+        
+        if strategy_name == "llm_expiring" or strategy_name == "all":
+            try:
+                llm_expiring_strategy = LLMExpiringMarketsStrategy()
+                if llm_expiring_strategy.is_active():
+                    self.strategies.append(llm_expiring_strategy)
+                    logger.info("✓ LLM 到期市场策略已加载")
+                else:
+                    logger.warning("⚠️  LLM 到期市场策略未激活")
+            except Exception as e:
+                logger.warning(f"LLM 到期市场策略加载失败: {e}")
         
         if strategy_name == "interactive" or strategy_name == "all":
             self.strategies.append(InteractiveStrategy())
@@ -278,7 +290,7 @@ def main():
         "--strategy",
         type=str,
         default="simple",
-        choices=["simple", "llm", "expiring", "interactive", "index", "all"],
+        choices=["simple", "llm", "expiring", "llm_expiring", "interactive", "index", "all"],
         help="选择交易策略"
     )
     

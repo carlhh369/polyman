@@ -5,7 +5,7 @@ Python 实现自动化参与 Polymarket 预测市场交易。
 ## 功能特性
 
 - 🤖 **自动化交易** - 24/7 扫描和执行交易
-- 📊 **多种策略** - 简单阈值、到期市场、交互式、LLM 智能策略、指数跟踪
+- 📊 **多种策略** - 简单阈值、到期市场、LLM 到期市场、交互式、LLM 智能策略、指数跟踪
 - 🧠 **AI 驱动** - 集成大语言模型进行智能市场分析
 - 📰 **新闻集成** - 实时新闻分析增强决策
 - 🛡️ **风险管理** - Kelly Criterion 仓位计算和多层风险控制
@@ -37,6 +37,9 @@ python main.py --strategy simple
 # 到期市场策略
 python main.py --strategy expiring
 
+# LLM 增强的到期市场策略（需要配置 LLM API）
+python main.py --strategy llm_expiring
+
 # LLM 智能策略（需要配置 LLM API）
 python main.py --strategy llm
 
@@ -58,6 +61,7 @@ python-agent/
 │   ├── base.py            # 基础策略类
 │   ├── simple_threshold.py
 │   ├── expiring_markets.py
+│   ├── llm_expiring_markets.py  # LLM 增强的到期市场策略
 │   ├── llm_simple_threshold.py
 │   └── interactive.py
 ├── services/              # 核心服务
